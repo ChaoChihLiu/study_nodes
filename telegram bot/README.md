@@ -77,6 +77,11 @@ finally, bot token is generated, it looks like '710XXXX207:AAEc-XXXXXXXXXzVqhLqk
 
 Also, after creating bot, botFather also provide hyperlink to find the bot you setup.
 
+### Config Load Balancer
+As diagram shows, I use load balancer forwarding message from Telegram, don't forget to config yours
+
+![Config LB](./elb_config_listener.png)
+
 ### Register Webhook URL
 
 Setup 3 variables below, replace with correct value. 
@@ -101,7 +106,6 @@ expected result:
 ![register webhook result](./result_config_webhook.jpg)
 
 after executing commands above, sometimes we may need to wait minutes, then run nodejs code
-
 
 ### Run bot
 ```bash
