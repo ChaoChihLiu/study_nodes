@@ -8,7 +8,7 @@ I use AWS for my studies, so the installation process may differ slightly if you
 
 - AWS Account
 - Minimum 2 CPUs, 4GB RAM
-- **Ubuntu 22.04 LTS or above** (recommended for K8s cluster, others can be AWS Linux2)
+- **Ubuntu 22.04 LTS or above** (recommended for K8s cluster, others can be AWS Linux2023)
 - **CRIO version 1.28**
 - New IAM Role with the policy `AmazonEKS_CNI_Policy` attached; assign this role to the EC2 server if using AWS.
 
