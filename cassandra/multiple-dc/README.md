@@ -239,3 +239,101 @@ expected result:
 ![node info](./node_info.png)
 it shows the 100% 'Percent Repaired'
 
+
+## Some simple DDL in Cassandra
+
+create a keyspace
+```sql
+CREATE KEYSPACE my_keyspace WITH REPLICATION = {
+  'class' : 'NetworkTopologyStrategy',
+  'dc1' : 3,
+  'dc2' : 3
+};
+
+DESCRIBE KEYSPACE my_keyspace;
+```
+
+create a table
+```sql
+USE my_keyspace;
+
+CREATE TABLE my_keyspace.users (
+    user_id UUID PRIMARY KEY,
+    name TEXT,
+    age INT,
+    email TEXT
+);
+
+DESCRIBE TABLE users;
+```
+
+create a table with composite pk
+```sql
+CREATE TABLE my_keyspace.orders (
+    order_id UUID,
+    customer_id UUID,
+    order_date TIMESTAMP,
+    total DECIMAL,
+    PRIMARY KEY (customer_id, order_date)
+);
+DESCRIBE TABLE orders;
+```
+create a table with multiple clustering columns
+```sql
+CREATE TABLE my_keyspace.sensor_data (
+    sensor_id UUID,
+    event_time TIMESTAMP,
+    temperature DECIMAL,
+    humidity DECIMAL,
+    PRIMARY KEY (sensor_id, event_time)
+) WITH CLUSTERING ORDER BY (event_time DESC);
+
+DESCRIBE TABLE sensor_data;
+```
+
+insert data
+```sql
+INSERT INTO my_keyspace.sensor_data (sensor_id, event_time, temperature, humidity)
+VALUES (uuid(), '2024-11-01 10:05:00', 24.0, 58.2);
+
+INSERT INTO my_keyspace.sensor_data (sensor_id, event_time, temperature, humidity)
+VALUES (uuid(), '2024-11-01 10:10:00', 22.9, 59.8);
+
+select * from my_keyspace.sensor_data;
+```
+
+update data
+```sql
+UPDATE my_keyspace.sensor_data
+SET temperature = 26.0, humidity = 65.0
+WHERE sensor_id = e3889f2a-c161-4f1c-b854-da014ca74677 
+  AND event_time = '2024-11-01 10:05:00';
+
+select * from my_keyspace.sensor_data;  
+```
+expected result:
+![update data](./update_data.png)
+
+delete particular column
+
+```sql
+DELETE humidity
+FROM my_keyspace.sensor_data
+WHERE sensor_id = e3889f2a-c161-4f1c-b854-da014ca74677 
+  AND event_time = '2024-11-01 10:05:00';
+
+select * from my_keyspace.sensor_data;  
+```
+expected result:
+![delete 1 column](./delete_particular_column.png)
+
+delete rows
+```sql
+DELETE FROM my_keyspace.sensor_data
+WHERE sensor_id = e3889f2a-c161-4f1c-b854-da014ca74677;
+
+select * from my_keyspace.sensor_data; 
+```
+
+expected result:
+![delete rows](./delete_rows.png)
