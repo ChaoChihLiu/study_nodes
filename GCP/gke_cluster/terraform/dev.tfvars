@@ -1,5 +1,5 @@
 region     = "asia-southeast1"
-env        = "dev2"
+env        = "dev"
 
 frontend_subnet_cidr = "10.1.1.0/24"
 frontend_source_ranges_cidr = ["10.1.1.0/24"]

@@ -88,7 +88,31 @@ gcloud container clusters get-credentials backend-dev2-private-cluster --region 
 expected result:
 ![access frontend k8s](./imgs/access_frontend_k8s.jpg)
 
-### 3. clean resource
+gke cluster should look like:
+![gke cluster reuslt](./imgs/gke_cluster_result.png)
+
+cloudsql:
+![cloud sql reuslt](./imgs/result_of_cloudsql.png)
+
+### 3. deploy nginx and test gke
+
+copy all the yaml files under 'k8s' to bastion server,
+test our frontend gke cluster, sign-in:
+```bash 
+gcloud container clusters get-credentials ${frontend cluster name} --region ${gke_location} --project ${project id}
+
+cd k8s
+
+kubectl apply -f nginx-configmap.yaml
+kubectl apply -f nginx-deployment.yaml
+kubectl apply -f nginx-lb.yaml
+```
+expected result:
+![gke deployment reuslt](./imgs/result_kubectl_deployment.jpg)
+there is an external ip (from the screenshot above), that is loab balancer IP, we can check result nginx webpage:
+![webpage reuslt](./imgs/from_webpage.jpg)
+
+### . clean resource
 ```bash 
 cd terraform
 ./deleteCluster.sh dev                 
