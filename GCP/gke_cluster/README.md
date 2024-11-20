@@ -40,7 +40,8 @@ cd terrafrom
 terraform init
 ```
 ### 3. install gcloud sdk, open terminal and login
-terraform also needs application access to your gcp account, go to create your own gcp account and run cmd:
+I don't create a service account and install credentials file into my local environment, 
+so we need to run the cmd below and get access form terraform:
 ```bash
 gcloud auth application-default login
 gcloud auth login
