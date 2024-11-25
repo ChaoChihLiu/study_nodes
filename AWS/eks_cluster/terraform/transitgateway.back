@@ -1,0 +1,82 @@
+# Create Transit Gateway
+resource "aws_ec2_transit_gateway" "tgw" {
+  description = "Transit Gateway for VPC connectivity"
+  amazon_side_asn = 64512
+
+  tags = {
+    Name = "eks-transit-gateway-${var.env}"
+  }
+}
+
+#Attach EKS VPC to Transit Gateway
+resource "aws_ec2_transit_gateway_vpc_attachment" "eks_public_vpc_attachment" {
+  transit_gateway_id = aws_ec2_transit_gateway.tgw.id
+  vpc_id             = module.vpc.vpc_id
+  subnet_ids         = module.vpc.public_subnets
+
+  tags = {
+    Name = "eks-public-vpc-attachment-${var.env}"
+  }
+}
+resource "aws_ec2_transit_gateway_vpc_attachment" "eks_private_vpc_attachment" {
+  transit_gateway_id = aws_ec2_transit_gateway.tgw.id
+  vpc_id             = module.vpc.vpc_id
+  subnet_ids         = module.vpc.private_subnets
+
+  tags = {
+    Name = "eks-private-vpc-attachment-${var.env}"
+  }
+}
+
+
+# Attach RDS VPC to Transit Gateway
+resource "aws_ec2_transit_gateway_vpc_attachment" "rds_vpc_attachment" {
+  transit_gateway_id = aws_ec2_transit_gateway.tgw.id
+  vpc_id             = aws_vpc.rds_vpc.id
+  subnet_ids = [for subnet in aws_subnet.rds_private_subnets : subnet.id]
+
+  tags = {
+    Name = "rds-vpc-attachment-${var.env}"
+  }
+}
+
+data "aws_ec2_transit_gateway" "existing_tgw" {
+  filter {
+    name   = "tag:Name"
+    values = ["eks-transit-gateway-${var.env}"] # Replace with your tag value
+  }
+
+  depends_on = [ aws_ec2_transit_gateway.tgw ]
+}
+
+
+# Create routes for private subnet in the EKS VPC
+resource "aws_route" "eks_public_to_rds" {
+  count = length(module.vpc.public_route_table_ids) # Dynamically add for each private subnet route table
+  route_table_id         = module.vpc.public_route_table_ids[count.index]
+  destination_cidr_block = var.rds_vpc_cidr          # CIDR of the RDS VPC
+  transit_gateway_id     = aws_ec2_transit_gateway.tgw.id
+
+  depends_on = [aws_ec2_transit_gateway_vpc_attachment.eks_public_vpc_attachment]
+}
+resource "aws_route" "eks_private_to_rds" {
+  count = length(module.vpc.private_route_table_ids) # Dynamically add for each private subnet route table
+  route_table_id         = module.vpc.private_route_table_ids[count.index]
+  destination_cidr_block = var.rds_vpc_cidr          # CIDR of the RDS VPC
+  transit_gateway_id     = aws_ec2_transit_gateway.tgw.id
+
+  depends_on = [aws_ec2_transit_gateway_vpc_attachment.eks_private_vpc_attachment]
+}
+
+# Create routes for private subnets in the RDS VPC
+resource "aws_route" "rds_to_eks" {
+  route_table_id         = aws_vpc.rds_vpc.default_route_table_id
+  destination_cidr_block = var.eks_vpc_cidr          # CIDR of the EKS VPC
+  transit_gateway_id     = aws_ec2_transit_gateway.tgw.id
+
+  depends_on = [aws_db_instance.rds_instance, aws_ec2_transit_gateway_vpc_attachment.rds_vpc_attachment]
+}
+
+
+
+
