@@ -29,7 +29,7 @@ RSA key is for our bastion server access, have to create this ssh key before exe
 
 ### 2. init terraform
 
-I put sample terraform script in this study notes, before creating gke with terraform, have to initialise this project:
+I put sample terraform script in this study notes, before creating EKS with terraform, have to initialise this project:
 ```bash
 cd terrafrom
 terraform init
@@ -161,7 +161,7 @@ expected result:
 ### 3. deploy nginx and test EKS
 
 copy all the yaml files under 'k8s' to bastion server,
-test our frontend gke cluster, sign-in:
+test our frontend EKS cluster, sign-in:
 ```bash 
 aws eks --region ${region} update-kubeconfig --name ${cluster name}
 
