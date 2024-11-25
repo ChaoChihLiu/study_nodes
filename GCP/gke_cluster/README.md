@@ -47,9 +47,9 @@ gcloud auth application-default login
 gcloud auth login
 ```
 
-## 🛠️ Build K8s cluster
+## 🛠️ Build GKE cluster
 
-### 1. run terraform, change your var file
+### 1. run terraform, change your tfvars file
 
 change variables in ${env}.tfvars, 
 variable: '${env}' is needed when we install application into k8s cluster
