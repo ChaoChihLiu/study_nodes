@@ -6,10 +6,7 @@ eks_vpc_cidr = "10.1.0.0/16"
 eks_vpc_public_subnet_cidr = "10.1.1.0/24"
 eks_azs    = ["ap-northeast-1a", "ap-northeast-1d", "ap-northeast-1c"]
 
-frontend_gke_allow_inbound_ports = ["443", "80", "8443", "8080"]
 frontend_node_type = "t3.xlarge"
-
-backend_gke_allow_inbound_ports = ["443", "80", "8443", "8080"]
 backend_node_type = "t3.xlarge"
 
 
