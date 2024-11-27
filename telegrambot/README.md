@@ -114,7 +114,7 @@ sudo nodejs bot.js
 
 ![Run Bot and echo message back](./bot_final_result.png)
 
-Here is the my current bot in program, join if you feel interested: <br/>
+Here is the my current bot, join if you feel interested: <br/>
 
 ![result of telegram bot](./telegram_bot.png)<br/>
 <a href="https://t.me/cpbpc_bot">Click Me</a><br/>
