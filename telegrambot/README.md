@@ -117,4 +117,5 @@ sudo nodejs bot.js
 Here is the my current bot in program, join if you feel interested: <br/>
 
 ![result of telegram bot](./telegram_bot.png)<br/>
-<a href="https://t.me/cpbpc_bot">Click Me</a>
+<a href="https://t.me/cpbpc_bot">Click Me</a><br/>
+<a href="https://github.com/ChaoChihLiu/cpbpc-bot">bot source code </a>
