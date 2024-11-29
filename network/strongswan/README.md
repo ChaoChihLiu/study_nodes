@@ -35,7 +35,7 @@ and add new set of config below after the comment:
 conn aws-vpn
     authby=secret                      # Use a shared secret for authentication
     auto=start                         # Automatically start connection on boot
-    rekey=yes
+    rekey=yes                          # Allows rekeying of IKE (Phase 1) and IPsec (Phase 2) connections when keys expire.
     keyexchange=ike                    # Use IKEv2 (default for strongSwan)
     ike=aes256-sha1-modp1024           # Phase 1 encryption
     esp=aes256-sha1                    # Phase 2 encryption
