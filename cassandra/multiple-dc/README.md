@@ -240,7 +240,7 @@ expected result:
 it shows the 100% 'Percent Repaired'
 
 
-## Some simple DDL in Cassandra
+## Some simple DDL/DML in Cassandra
 
 create a keyspace
 ```sql
