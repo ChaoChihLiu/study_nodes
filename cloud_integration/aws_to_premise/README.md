@@ -52,6 +52,9 @@ There is a 'Download' button on the top-right corner, download respective config
 
 ![strongswan config](./imgs/tunnel-info.png)
 
+![strongswan config detail](./imgs/tunnel-info-detail.png)
+![strongswan secret key](./imgs/tunnel-secret-key.png)
+
 Once strongswan on GCP has been created and run successfully, after few minutes, the tunnel information should be 'up'.In this case, we only use tunnel 1.
 
 ![tunnel status](./imgs/tunnel-status.jpg)
@@ -66,6 +69,8 @@ Check bpc route table:
 
 add new route to main table, associate on-premise CIDR with transit gateway created in previous steps.
 ![change-vpc-route-table](./imgs/change-vpc-route-table.png)
+
+you can find such tunnel information and secret key in this file downlowded from AWS; it can help you configure strongswan on-premise.
 
 ### 5. Transit Gateway Route Table
 
