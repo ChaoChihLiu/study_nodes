@@ -47,7 +47,7 @@ cd terraform
 ./runTerraform.sh dev                 
 ```
 
-expected result:
+expected result: <br/>
 ![terraform result](./imgs/terraform_result.jpg)
 ![eks result](./imgs/eks_result.png)
 
@@ -61,7 +61,7 @@ output shows:<br/>
 ```bash
 ssh -i ${ssh_key} ${username}@${bastion public IP}
 ```
-expected result: 
+expected result: <br/> 
 ![ssh bastion server](./imgs/ssh_bastion_server.jpg)
 
 login to frontend cluster, we can find eks region from ${env}.tfvars:
@@ -70,7 +70,7 @@ aws eks --region ${region} update-kubeconfig --name ${cluster name}
 #sample cmd:
 aws eks --region ap-northeast-1 update-kubeconfig --name eks-dev28-backend-cluster
 ```
-expected result:
+expected result: <br/>
 ![access frontend k8s](./imgs/access_frontend_k8s.png)
 
 When EKS cluster is created, the 'aws account' we use to run terraform (look at 'profile' in cloud_platform.tf) will be the default admin user. Based on my scripts, I associate an IAM role to bastion server, but how do we rely on bastion ec2 instance profile and access EKS without using access key and secret key? Here are the steps:
@@ -155,7 +155,7 @@ test connectivity:
 kubectl cluster-info
 kubectl get node
 ```
-expected result:
+expected result: <br/>
 ![test connectivity without aws credential](./imgs/test_conn_without_credential.png)
 
 ### 3. deploy nginx and test EKS
@@ -171,7 +171,7 @@ kubectl apply -f nginx-configmap.yaml
 kubectl apply -f nginx-deployment.yaml
 kubectl apply -f nginx-lb.yaml
 ```
-expected result:
+expected result: <br/>
 ![nginx deployment reuslt](./imgs/result_kubectl_deployment.png)
 
 there is an external ip (from the screenshot above), that is loab balancer IP, we can check result nginx webpage:
