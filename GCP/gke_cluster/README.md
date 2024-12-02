@@ -61,7 +61,8 @@ cd terraform
 ```
 
 expected result: <br/>
-![terraform result](./imgs/terraform_result.png)
+<!-- ![terraform result](./imgs/terraform_result.png) -->
+<img src="./imgs/terraform_result.png" alt="terraform result" width="50%"><br/>
 
 ### 2. test connectivity
 ```bash
@@ -91,10 +92,10 @@ gcloud container clusters get-credentials backend-dev2-private-cluster --region 
 expected result: <br/>
 ![access frontend k8s](./imgs/access_frontend_k8s.jpg)
 
-gke cluster should look like:
+gke cluster should look like: <br/>
 ![gke cluster reuslt](./imgs/gke_cluster_result.png)
 
-cloudsql:
+cloudsql:<br/>
 ![cloud sql reuslt](./imgs/result_of_cloudsql.png)
 
 ### 3. deploy nginx and test gke
