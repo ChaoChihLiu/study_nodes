@@ -379,7 +379,8 @@ add google dns:
 [Resolve]
 DNS=8.8.8.8 8.8.4.4
 ```
-![change system resolved](./change-system-resolved.png)
+<!-- ![change system resolved](./change-system-resolved.png) -->
+<img src="./change-system-resolved.png" alt="change system resolved" width="50%"><br/>
 restart system resolved:
 ```bash
 sudo systemctl restart systemd-resolved
