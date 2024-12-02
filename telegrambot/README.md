@@ -14,9 +14,10 @@ Would like to develop a simple bot to help my church services. The idea is to pu
 
 ## 🏗️ Introduction
 
-My idea about this chatbot is that using network loadbalancer as entry point receives any message from Telegram through webhook; using Nginx terminates SSL connection, and forward request to my bot written in nodejs.
+My idea about this chatbot is that using network loadbalancer as entry point receives any message from Telegram through webhook; using Nginx terminates SSL connection, and forward request to my bot written in nodejs.<br/>
 
-![Bot Architecture Diagram](./telegrambot.png)
+<!-- ![Bot Architecture Diagram](./telegrambot.png) -->
+<img src="./telegrambot.png" alt="Bot Architecture Diagram" width="50%"><br/>
 
 There are something need to know:
 - self-signed certificate works, but TLS/SSL must be 1.2+, and have to register domain name in CN or SAN (in my case, I use AWS NLB dummy domain name)
@@ -65,22 +66,25 @@ sudo systemctl
 
 ### Create a Telegram Bot
 
-a. BotFather, open Telegram app, and search botfather
+a. BotFather, open Telegram app, and search botfather<br/>
 
-![Find BotFather](./find_botfather.png)
+<!-- ![Find BotFather](./find_botfather.png) -->
+<img src="./find_botfather.png" alt="Find BotFather" width="50%"><br/>
 
-b. create new bot, follow the instruction below, have to enter bot name and username
+b. create new bot, follow the instruction below, have to enter bot name and username<br/>
 
-![Create Bot](./create_new_bot.jpg)
+<!-- ![Create Bot](./create_new_bot.jpg) -->
+<img src="./create_new_bot.png" alt="Create Bot" width="50%"><br/>
 
 finally, bot token is generated, it looks like '710XXXX207:AAEc-XXXXXXXXXzVqhLqkXIWmFcc'. Keep this token in a safe place!!
 
 Also, after creating bot, botFather also provide hyperlink to find the bot you setup.
 
 ### Config Load Balancer
-As diagram shows, I use load balancer forwarding message from Telegram, don't forget to config yours
+As diagram shows, I use load balancer forwarding message from Telegram, don't forget to config yours<br/>
 
-![Config LB](./elb_config_listener.png)
+<!-- ![Config LB](./elb_config_listener.png) -->
+<img src="./elb_config_listener.png" alt="Config LB]" width="50%"><br/>
 
 ### Register Webhook URL
 
@@ -102,8 +106,9 @@ curl -F "url=$WEBHOOK_HOST/$WEBHOOK_PATH" -F "certificate=@/home/ec2-user/rpg-XX
 echo "\n"
 curl "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/getWebhookInfo";
 ```
-expected result:
-![register webhook result](./result_config_webhook.jpg)
+expected result:<br/>
+<!-- ![register webhook result](./result_config_webhook.jpg) -->
+<img src="./result_config_webhook.jpg" alt="register webhook result" width="50%"><br/>
 
 after executing commands above, sometimes we may need to wait minutes, then run nodejs code
 
@@ -112,10 +117,10 @@ after executing commands above, sometimes we may need to wait minutes, then run 
 sudo nodejs bot.js
 ```
 
-![Run Bot and echo message back](./bot_final_result.png)
+<!-- ![Run Bot and echo message back](./bot_final_result.png) -->
+<img src="./bot_final_result.png" alt="Run Bot and echo message back" width="50%"><br/>
 
 Here is the my current bot, join if you feel interested: <br/>
-
 ![result of telegram bot](./telegram_bot.png)<br/>
 <a href="https://t.me/cpbpc_bot">Click Me</a><br/>
 <a href="https://github.com/ChaoChihLiu/cpbpc-bot">bot source code </a>
