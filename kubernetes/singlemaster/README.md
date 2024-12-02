@@ -175,7 +175,7 @@ sudo crictl --runtime-endpoint unix:///var/run/crio/crio.sock version
 ```bash
 sudo crictl info
 ```
-![CRIO info](./crio-info.png)
+<img src="./crio-info.png" alt="CRIO info" width="50%">
 
 #### f. update CRIO subnet
 ```bash
@@ -201,10 +201,12 @@ sudo sed -i 's/10.85.0.0/{CIDR}/g' /etc/cni/net.d/100-crio-bridge.conflist
 sudo sed -i 's/10.85.0.0/172.16.0.0/g' /etc/cni/net.d/100-crio-bridge.conf
 sudo sed -i 's/10.85.0.0/172.16.0.0/g' /etc/cni/net.d/100-crio-bridge.conflist
 ```
-before changing:
-![old cni config](./old-cni-config.png)
-after changing:
-![new cni config](./new-cni-config.png)
+before changing: <br/>
+<!-- ![old cni config](./old-cni-config.png) -->
+<img src="./old-cni-config.png" alt="old cni config" width="50%"><br/>
+after changing:<br/>
+<!-- ![new cni config](./new-cni-config.png) -->
+<img src="./new-cni-config.png" alt="new cni config" width="50%">
 
 restart CRIO
 ```bash
