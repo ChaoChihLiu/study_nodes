@@ -13,7 +13,8 @@ Currently, Kubernetes has been the mainstream in IT market over years, if anyone
 
 ## 🏗️ Introduction
 
-![gke web architecture](./imgs/gke_infra.png)
+<!-- ![gke web architecture](./imgs/gke_infra.png) -->
+<img src="./imgs/gke_infra.png" alt="gke web architecture" width="50%"><br/>
 
 my idea is that a VPC contains 3 subnets with NAT gateway; the 1st subnet (with public IP) has bastion server, which can access other k8s clusters; 2nd and 3rd subnets host a k8s cluster respectively. Cloud SQL is built on its own but grant its access to k8s clusters only.
 
@@ -59,15 +60,16 @@ cd terraform
 ./runTerraform.sh dev                 
 ```
 
-expected result:
+expected result: <br/>
 ![terraform result](./imgs/terraform_result.png)
 
 ### 2. test connectivity
 ```bash
 ssh -i ${ssh_key} ${username}@${bastion public IP}
 ```
-expected result: 
-![ssh bastion server](./imgs/ssh_bastion_server.jpg)
+expected result: <br/> 
+<!-- ![ssh bastion server](./imgs/ssh_bastion_server.jpg) -->
+<img src="./imgs/ssh_bastion_server.jpg" alt="ssh bastion server" width="50%"><br/>
 
 login to frontend cluster, we can find gke_location from ${env}.tfvars:
 ```bash
@@ -76,7 +78,7 @@ gcloud container clusters get-credentials ${frontend cluster name} --region ${gk
 #sample cmd:
 gcloud container clusters get-credentials frontend-dev-frontend-cluster --region asia-southeast1-a --project xxxxxx
 ```
-expected result:
+expected result: <br/>
 ![access frontend k8s](./imgs/access_frontend_k8s.jpg)
 
 login to backend cluster, we can find gke_location from ${env}.tfvars:
@@ -86,7 +88,7 @@ gcloud container clusters get-credentials ${backend cluster name}  --region ${gk
 #sample cmd:
 gcloud container clusters get-credentials backend-dev2-private-cluster --region asia-southeast1-a --project xxxxxx
 ```
-expected result:
+expected result: <br/>
 ![access frontend k8s](./imgs/access_frontend_k8s.jpg)
 
 gke cluster should look like:
@@ -108,10 +110,12 @@ kubectl apply -f nginx-configmap.yaml
 kubectl apply -f nginx-deployment.yaml
 kubectl apply -f nginx-lb.yaml
 ```
-expected result:
-![gke deployment reuslt](./imgs/result_kubectl_deployment.jpg)
-there is an external ip (from the screenshot above), that is loab balancer IP, we can check result nginx webpage:
-![webpage reuslt](./imgs/from_webpage.jpg)
+expected result: <br/>
+<!-- ![gke deployment reuslt](./imgs/result_kubectl_deployment.jpg) -->
+<img src="./imgs/result_kubectl_deployment.jpg" alt="gke deployment reuslt" width="50%"><br/>
+there is an external ip (from the screenshot above), that is loab balancer IP, we can check result nginx webpage:<br/>
+<!-- ![webpage reuslt](./imgs/from_webpage.jpg) -->
+<img src="./imgs/from_webpage.jpg" alt="webpage reuslt" width="300"><br/>
 
 ### . clean resource
 ```bash 
