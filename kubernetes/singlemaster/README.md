@@ -170,7 +170,8 @@ sudo systemctl status crio
 sudo apt install -y cri-tools
 sudo crictl --runtime-endpoint unix:///var/run/crio/crio.sock version
 ```
-![CRIO runtime](./crio-runtime.png)
+<!-- ![CRIO runtime](./crio-runtime.png) -->
+<img src="./crio-runtime.png" alt="CRIO runtime" width="50%">
 
 ```bash
 sudo crictl info
