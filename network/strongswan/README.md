@@ -11,9 +11,10 @@ I know we don't need to install 3rd-party vpn server on gcp VM; gcp has Cloud VP
 ## ⚙️ Preparation
 
 ### 1. create GCP VM
-When we create vm, need to check 1 option network config: 'IP forwarding'. This property seems not able to update after creation.
+When we create vm, need to check 1 option network config: 'IP forwarding'. This property seems not able to update after creation.<br/>
 
-![gcp vm ip forwarding](./imgs/gcp-vm-ip-forwarding.png)
+<!-- ![gcp vm ip forwarding](./imgs/gcp-vm-ip-forwarding.png) -->
+<img src="./imgs/gcp-vm-ip-forwarding.png" alt="gcp vm ip forwarding" width="50%"><br/>
 
 ## 🛠️ StrongSwan
 
@@ -88,23 +89,27 @@ sudo iptables -A FORWARD -s <destination CIDR> -d <Your_Local_Subnet> -j ACCEPT
 sudo systemctl restart ipsec
 sudo systemctl status ipsec
 ```
-expected result:
-![ipsec status](./imgs/ipsec-status.jpg)
+expected result:<br/>
+<!-- ![ipsec status](./imgs/ipsec-status.jpg) -->
+<img src="./imgs/ipsec-status.jpg" alt="ipsec status" width="50%"><br/>
 
 ### 4. Firewall rule
 
 Open GCP Firewall rule, add ingress and egress respectively:
 
 ingress:<br/>
-![ingress rule](./imgs/gcp-ingress-rule.png)
+<!-- ![ingress rule](./imgs/gcp-ingress-rule.png) -->
+<img src="./imgs/gcp-ingress-rule.png" alt="ingress rule" width="50%"><br/>
 
 egress:<br/>
-![ingress rule](./imgs/gcp-egress-rule.png)
+<!-- ![egress rule](./imgs/gcp-egress-rule.png) -->
+<img src="./imgs/gcp-egress-rule.png" alt="egress rule" width="50%"><br/>
 
 ### 4. Route table
 
 go to GCP 'VPC Network' -> 'Routes' -> tab 'Route Management', and create a new route on your VPC, in my case, I use 'default':<br/>
-![new route](./imgs/gcp-route-table.png)
+<!-- ![new route](./imgs/gcp-route-table.png) -->
+<img src="./imgs/gcp-route-table.png" alt="[new route" width="50%"><br/>
 'Next hop' need to choose the strongswan vm we created in previous steps.
 
 now you can go head to config VPN server in peer domain. 
