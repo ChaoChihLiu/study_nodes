@@ -390,7 +390,8 @@ Test:
 ```bash
 nslookup raw.githubusercontent.com
 ```
-![test nslookup](./test-nslookup.png)
+<!-- ![test nslookup](./test-nslookup.png) -->
+<img src="./test-nslookup.png" alt="test nslookup" width="50%"><br/>
 
 ### 6. Test work node
 Let's us install nginx on control planes
