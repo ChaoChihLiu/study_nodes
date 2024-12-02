@@ -188,7 +188,7 @@ start cassandra:
 ```bash
 /home/centos/apache-cassandra-4.0.14/bin/cassandra -R
 ```
-expected result:
+expected result: <br/>
 ![run cassandra](./run_cassandra.png)
 
 test connectivity, the default username and password are all 'cassandra':
@@ -202,14 +202,15 @@ cd /home/centos/apache-cassandra-4.0.14/bin/
 
 ./cqlsh --debug --cqlshrc=cqlshrc --ssl -u cassandra -p cassandra 10.0.14.32
 ```
-if all configuration are correct, expected result:
+if all configuration are correct, expected result: <br/>
 ![connectivity test result](./connectivity_test_result.png)
 
 ### 8. Install other nodes
 repeat steps from '1. prepared self-signed SSL cert' to '7. Test Cassandra'. You may consider to reuse server/client key/crt, rather than create new one. 
 
-expected result:
-![two dc result](./two_dc_result.png)
+expected result: <br/>
+<!-- ![two dc result](./two_dc_result.png) -->
+<img src="./two_dc_result.png" alt="two dc result" width="50%"><br/>
 
 ### 9. Update Cassandra Auth Replication Factor
 
@@ -235,8 +236,9 @@ after updating replication factor and repairing all nodes, run this cmd:
 ./nodetool info
 ```
 
-expected result:
-![node info](./node_info.png)
+expected result: <br/>
+<!-- ![node info](./node_info.png) -->
+<img src="./node_info.png" alt="node info" width="50%"><br/>
 it shows the 100% 'Percent Repaired'
 
 
@@ -311,7 +313,7 @@ WHERE sensor_id = e3889f2a-c161-4f1c-b854-da014ca74677
 
 select * from my_keyspace.sensor_data;  
 ```
-expected result:
+expected result: <br/>
 ![update data](./update_data.png)
 
 delete particular column
@@ -324,7 +326,7 @@ WHERE sensor_id = e3889f2a-c161-4f1c-b854-da014ca74677
 
 select * from my_keyspace.sensor_data;  
 ```
-expected result:
+expected result: <br/>
 ![delete 1 column](./delete_particular_column.png)
 
 delete rows
@@ -335,5 +337,5 @@ WHERE sensor_id = e3889f2a-c161-4f1c-b854-da014ca74677;
 select * from my_keyspace.sensor_data; 
 ```
 
-expected result:
+expected result: <br/>
 ![delete rows](./delete_rows.png)
